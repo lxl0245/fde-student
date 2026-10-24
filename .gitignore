@@ -13,6 +13,13 @@ venv/
 # Runtime / local state
 .runtime/
 
+# Archives
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+
 # IDE / OS
 .idea/
 .vscode/
