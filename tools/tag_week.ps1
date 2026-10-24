@@ -113,9 +113,26 @@ try {
     if ($LASTEXITCODE -eq 0 -and $localExists) {
         Fail "Tag '$tagName' already exists locally. Use -Revision <n> for a revision tag."
     }
-    $remoteExists = (& git ls-remote --tags origin "refs/tags/$tagName" 2>$null)
-    if ($remoteExists) {
-        Fail "Tag '$tagName' already exists on origin. Refusing to duplicate it."
+    # Refuse to duplicate a remote tag. Network problems must not be mistaken
+    # for "no such tag": only a successful probe that actually returns a ref
+    # counts as a duplicate. Offline runs keep working on the local tag.
+    $offline = $false
+    $remoteProbe = $null
+    $previousPreference = $ErrorActionPreference
+    $ErrorActionPreference = 'Continue'
+    $remoteProbe = (& git ls-remote --tags origin "refs/tags/$tagName" 2>$null)
+    $probeExit = $LASTEXITCODE
+    $ErrorActionPreference = $previousPreference
+
+    if ($probeExit -eq 0) {
+        if ($remoteProbe) {
+            Fail "Tag '$tagName' already exists on origin. Refusing to duplicate it."
+        }
+    }
+    else {
+        Write-Host 'Warning: could not reach origin, skipped the remote duplicate check.' -ForegroundColor Yellow
+        Write-Host '         The tag is created locally only; push it later.' -ForegroundColor Yellow
+        $offline = $true
     }
 
     # --- 5. default tag message --------------------------------------------
@@ -170,11 +187,19 @@ try {
         }
     }
 
+    if ($Push -and $offline) {
+        Write-Host ''
+        Write-Host 'Skipping push: origin is unreachable. Nothing was lost locally.' -ForegroundColor Yellow
+        $Push = $false
+    }
+
     if ($Push) {
         $pushArgs = if ($branch -eq 'main') { @('push', '--atomic', 'origin', 'main', '--follow-tags') } else { @('push', 'origin', $tagName) }
         if ($PSCmdlet.ShouldProcess('origin', ($pushArgs -join ' '))) {
             & git @pushArgs
-            if ($LASTEXITCODE -ne 0) { Fail 'git push failed.' }
+            if ($LASTEXITCODE -ne 0) {
+                Fail 'git push failed (network or remote rejection). The local tag still exists; retry the push later.'
+            }
             Write-Host 'Pushed. TODO: create the matching GitHub Release from this tag.' -ForegroundColor Green
         }
     }
