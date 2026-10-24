@@ -1,0 +1,209 @@
+{
+  "product_version": "0.2.0-w1",
+  "runtime_revision": "w01-runtime-20260922",
+  "session_id": "899d29aa-3cef-4ccf-82da-4b2ff7a32d68",
+  "model_mode": "live",
+  "model_name": "deepseek-flash",
+  "prompt_sha256": "051286bc27083b1f3cd9201ebcd09030830ec3a06401197a0adaa0f1003fcddd",
+  "status": "clarification",
+  "result": {
+    "status": "clarification",
+    "summary": "请确认比较时段。可点击下面的日期方案，或回复“按第一个方案”等；也可直接输入带年份的两个完整月份。",
+    "recommendations": [],
+    "evidence_ids": [],
+    "limitations": [
+      "尚未确认比较时段，未调用消费比较工具，因此本轮没有任何会员级证据。",
+      "S03 门店 2026-08-01 之后无数据覆盖，涉及 8 月的比较对 S03 覆盖不完整，结论不能推广到该门店。",
+      "老会员口径为“在基线时段开始前已加入”；下降阈值最低 20%，零基期不计算下降比例。"
+    ]
+  },
+  "observations": [
+    {
+      "name": "describe_business",
+      "result": {
+        "status": "ok",
+        "semantics": {
+          "version": "sample-semantics-1",
+          "company": "松果生活（独立虚构样例）",
+          "objects": [
+            "Member",
+            "Order",
+            "Store",
+            "Tag"
+          ],
+          "links": [
+            "Member belongs_to Store",
+            "Order belongs_to Member"
+          ],
+          "spend": {
+            "id": "sample.net_spend.v1",
+            "aggregation": "paid_minus_refunded_cents",
+            "unit": "CNY cents",
+            "include": "status=paid",
+            "window": "start inclusive, end exclusive"
+          },
+          "old_member": {
+            "basis": "joined_before_baseline"
+          },
+          "decline": {
+            "minimum_pct": 20,
+            "formula": "(baseline-current)/baseline*100",
+            "zero_baseline": "undefined; excluded from decline cohort"
+          },
+          "recommendation_constraints": [
+            "只提出可供运营人员审核的建议，不承诺召回效果",
+            "未获得确认不执行标签动作",
+            "不声称已经发券",
+            "引用工具 evidence_id，金额只能来自工具结果"
+          ]
+        },
+        "dataset": {
+          "dataset_version": "sample-1",
+          "business_reference_date": "2026-09-01",
+          "fictional": true,
+          "company": "松果生活",
+          "description": "独立于青禾。2026 年 7 月与 8 月；S03 的 8 月没有数据覆盖，不可当作消费为零。"
+        },
+        "coverage": [
+          {
+            "store_id": "S01",
+            "start": "2026-07-01",
+            "end": "2026-09-01"
+          },
+          {
+            "store_id": "S02",
+            "start": "2026-07-01",
+            "end": "2026-09-01"
+          },
+          {
+            "store_id": "S03",
+            "start": "2026-07-01",
+            "end": "2026-08-01"
+          }
+        ],
+        "required": "必须由用户明确或确认两个时段，不能擅自用默认日期替代澄清。"
+      },
+      "call_id": "call_00_Si9yPrIjXSNYPMfHe6lw1369"
+    },
+    {
+      "name": "describe_business",
+      "result": {
+        "status": "ok",
+        "semantics": {
+          "version": "sample-semantics-1",
+          "company": "松果生活（独立虚构样例）",
+          "objects": [
+            "Member",
+            "Order",
+            "Store",
+            "Tag"
+          ],
+          "links": [
+            "Member belongs_to Store",
+            "Order belongs_to Member"
+          ],
+          "spend": {
+            "id": "sample.net_spend.v1",
+            "aggregation": "paid_minus_refunded_cents",
+            "unit": "CNY cents",
+            "include": "status=paid",
+            "window": "start inclusive, end exclusive"
+          },
+          "old_member": {
+            "basis": "joined_before_baseline"
+          },
+          "decline": {
+            "minimum_pct": 20,
+            "formula": "(baseline-current)/baseline*100",
+            "zero_baseline": "undefined; excluded from decline cohort"
+          },
+          "recommendation_constraints": [
+            "只提出可供运营人员审核的建议，不承诺召回效果",
+            "未获得确认不执行标签动作",
+            "不声称已经发券",
+            "引用工具 evidence_id，金额只能来自工具结果"
+          ]
+        },
+        "dataset": {
+          "dataset_version": "sample-1",
+          "business_reference_date": "2026-09-01",
+          "fictional": true,
+          "company": "松果生活",
+          "description": "独立于青禾。2026 年 7 月与 8 月；S03 的 8 月没有数据覆盖，不可当作消费为零。"
+        },
+        "coverage": [
+          {
+            "store_id": "S01",
+            "start": "2026-07-01",
+            "end": "2026-09-01"
+          },
+          {
+            "store_id": "S02",
+            "start": "2026-07-01",
+            "end": "2026-09-01"
+          },
+          {
+            "store_id": "S03",
+            "start": "2026-07-01",
+            "end": "2026-08-01"
+          }
+        ],
+        "required": "必须由用户明确或确认两个时段，不能擅自用默认日期替代澄清。"
+      },
+      "call_id": "call_00_wZ0NheK3VYDsk8q3M6lp5239"
+    }
+  ],
+  "steps": 3,
+  "output_repairs": 0,
+  "usage": {
+    "prompt_tokens": 6226,
+    "completion_tokens": 839,
+    "total_tokens": 7065
+  },
+  "trace_id": "a25b19a0fd6ab0c4e806b5fe3b007fb1",
+  "time_options": [
+    {
+      "id": "T1",
+      "windows": [
+        [
+          "2026-07-01",
+          "2026-08-01"
+        ],
+        [
+          "2026-08-01",
+          "2026-09-01"
+        ]
+      ],
+      "label": "基准 2026-07-01 至 2026-08-01；比较 2026-08-01 至 2026-09-01（均不含结束日）"
+    },
+    {
+      "id": "T2",
+      "windows": [
+        [
+          "2026-07-01",
+          "2026-07-16"
+        ],
+        [
+          "2026-08-01",
+          "2026-08-16"
+        ]
+      ],
+      "label": "基准 2026-07-01 至 2026-07-16；比较 2026-08-01 至 2026-08-16（均不含结束日）"
+    },
+    {
+      "id": "T3",
+      "windows": [
+        [
+          "2026-07-15",
+          "2026-08-01"
+        ],
+        [
+          "2026-08-15",
+          "2026-09-01"
+        ]
+      ],
+      "label": "基准 2026-07-15 至 2026-08-01；比较 2026-08-15 至 2026-09-01（均不含结束日）"
+    }
+  ],
+  "time_options_token": "6c6d7d653e3b453eb66a9798e4a47809"
+}

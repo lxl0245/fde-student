@@ -1,0 +1,9 @@
+{
+  "version": "sample-semantics-1", "company": "松果生活（独立虚构样例）",
+  "objects": ["Member", "Order", "Store", "Tag"],
+  "links": ["Member belongs_to Store", "Order belongs_to Member"],
+  "spend": {"id": "sample.net_spend.v1", "aggregation": "paid_minus_refunded_cents", "unit": "CNY cents", "include": "status=paid", "window": "start inclusive, end exclusive"},
+  "old_member": {"basis": "joined_before_baseline"},
+  "decline": {"minimum_pct": 20, "formula": "(baseline-current)/baseline*100", "zero_baseline": "undefined; excluded from decline cohort"},
+  "recommendation_constraints": ["只提出可供运营人员审核的建议，不承诺召回效果", "未获得确认不执行标签动作", "不声称已经发券", "引用工具 evidence_id，金额只能来自工具结果"]
+}

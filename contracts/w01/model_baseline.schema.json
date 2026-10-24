@@ -1,0 +1,121 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "product_version",
+    "model_name",
+    "protocol",
+    "prompt_sha256",
+    "dataset_version",
+    "runs",
+    "failures"
+  ],
+  "properties": {
+    "contract_version": {
+      "const": "w01-0.2.0"
+    },
+    "product_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "model_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "protocol": {
+      "type": "string",
+      "minLength": 1
+    },
+    "prompt_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "dataset_version": {
+      "const": "sample-1"
+    },
+    "runs": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "case_id",
+          "run_id",
+          "expected_status",
+          "actual_status",
+          "passed",
+          "trace_id",
+          "duration_seconds"
+        ],
+        "properties": {
+          "case_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "run_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "expected_status": {
+            "type": "string",
+            "minLength": 1
+          },
+          "actual_status": {
+            "type": "string",
+            "minLength": 1
+          },
+          "passed": {
+            "type": "boolean"
+          },
+          "trace_id": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{32}$"
+          },
+          "duration_seconds": {
+            "type": "number",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "failures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "case_id",
+          "category",
+          "evidence",
+          "next_step"
+        ],
+        "properties": {
+          "case_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "category": {
+            "enum": [
+              "protocol",
+              "data",
+              "tool",
+              "behavior",
+              "output_format",
+              "harness"
+            ]
+          },
+          "evidence": {
+            "type": "string",
+            "minLength": 1
+          },
+          "next_step": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "contract_version": "w01-0.2.1",
+  "product_version": "0.2.0-w1",
+  "capability_matrix_version": "w1-capabilities-0.2.0",
+  "items": [
+    {
+      "id": "GAP-001",
+      "request": "解决会员复购率连续四个季度下滑的问题（沈总访谈确认效果=复购率止跌回升）",
+      "category": "暂不承诺",
+      "capability_ids": [
+        "CAP-003",
+        "CAP-006"
+      ],
+      "evidence_status": "reported",
+      "evidence": [
+        {
+          "source": "01_沈总立项邮件.md",
+          "locator": "正文第1段\"把复购下滑的问题解决掉\"",
+          "note": "客户核心诉求，属角色转述"
+        },
+        {
+          "source": "product/semantics.json",
+          "locator": "recommendation_constraints约束项",
+          "note": "产品只提出供人审核的建议、不承诺召回效果，效果类诉求不能承诺"
+        },
+        {
+          "source": "W1访谈记录-沈总（evidence/W1-interview-shen-d2e2a944.json）",
+          "locator": "MSG-01091",
+          "note": "复购率前四季数值与计算口径未核实、需找小林对清；沈总自认\"会员老化只是判断，需数据验证\""
+        }
+      ],
+      "next_step": "复购率前四季数值与计算口径未核实，找小林对清（访谈MSG-01091）；\"解决\"的验收口径与沈总对齐；根因需数据验证"
+    },
+    {
+      "id": "GAP-002",
+      "request": "三个月内看到效果（向董事会交代）",
+      "category": "暂不承诺",
+      "capability_ids": [
+        "CAP-006",
+        "CAP-007",
+        "CAP-008"
+      ],
+      "evidence_status": "reported",
+      "evidence": [
+        {
+          "source": "01_沈总立项邮件.md",
+          "locator": "正文第1段\"三个月能看到效果\"",
+          "note": "客户时限期望"
+        },
+        {
+          "source": "product/capabilities.json",
+          "locator": "CAP-006/CAP-007/CAP-008的scope",
+          "note": "青禾语义适配、发券标签连接器（W8）、生产运营（W9）均为后续开发，时限无法承诺"
+        },
+        {
+          "source": "W1访谈记录-沈总（evidence/W1-interview-shen-d2e2a944.json）",
+          "locator": "MSG-01095",
+          "note": "三个月是期望不是定死的验收期限；效果指复购率止跌回升；提升幅度与验收口径未确认"
+        }
+      ],
+      "next_step": "沈总访谈确认三个月是期望，不是定死的验收期限；效果定义已明确为复购率止跌回升（访谈MSG-01095）；提升幅度、口径与验收方式仍未确认，需与小林/沈总继续对齐；确认青禾数据可用时间"
+    },
+    {
+      "id": "GAP-003",
+      "request": "在成熟标准产品上尽快用起来，不从零开发",
+      "category": "产品缺口",
+      "capability_ids": [
+        "CAP-008"
+      ],
+      "evidence_status": "verified",
+      "evidence": [
+        {
+          "source": "01_沈总立项邮件.md",
+          "locator": "第2、4段",
+          "note": "沈总认为这次是在成熟产品上做，希望尽快用起来"
+        },
+        {
+          "source": "工程包 RELEASE.md",
+          "locator": "“使用边界”",
+          "note": "本产品用于单人、本机教学。"
+        },
+        {
+          "source": "product/capabilities.json",
+          "locator": "CAP-008 state=extension_required",
+          "note": "生产运营为 extension_required：无多用户隔离、生产认证、客户审计与灰度，需要按客户要求扩展。"
+        }
+      ],
+      "next_step": "本地教学产品，无多用户隔离、生产认证、客户审计与灰度；找老周确认使用人数、权限、数据等。本阶段现在样例数据上验证，不承诺上线时间"
+    },
+    {
+      "id": "GAP-004",
+      "request": "帮运营从80万活跃会员中识别需要重点经营的人",
+      "category": "系统适配",
+      "capability_ids": [
+        "CAP-003",
+        "CAP-004",
+        "CAP-006"
+      ],
+      "evidence_status": "reported",
+      "evidence": [
+        {
+          "source": "01_沈总立项邮件.md",
+          "locator": "正文第 3 段“第二”",
+          "note": "沈总的诉求：80 万活跃会员，希望助手帮助运营识别重点经营对象。会员数是沈总使用的口径，尚未核实。"
+        },
+        {
+          "source": "product/capabilities.json",
+          "locator": "CAP-003/CAP-004/CAP-006的scope",
+          "note": "消费比较、会员数据、下降定义能力已有"
+        },
+        {
+          "source": "product/API.md",
+          "locator": "\"数据\"节末段",
+          "note": "标准产品已定义老会员（基期开始前入会）和下降人群（净消费下降至少 20%），只在松果生活样例上实现。"
+        },
+        {
+          "source": "BRIEF-W01-001 公司简介与项目协作关系",
+          "locator": "正文第 2 段",
+          "note": "产品尚未接入青禾优选的数据和业务系统，本周没有提供完整会员明细。"
+        },
+        {
+          "source": "W1访谈记录-沈总（evidence/W1-interview-shen-d2e2a944.json）",
+          "locator": "MSG-01089",
+          "note": "\"重点经营\"定义：复购有下滑风险、值得优先投入运营动作的人；具体口径未定，需与相关同事谈清"
+        }
+      ],
+      "next_step": "\"重点经营\"具体口径未定（访谈MSG-01089）；找老周核实青禾数据结构与覆盖区间；与小林对焦筛选口径（标准语义当前只有净消费下降≥20%，不能默认等同）"
+    },
+    {
+      "id": "GAP-005",
+      "request": "识别出来之后直接给运营建议；建议直接送到小林手上，别又让她多整理一套表",
+      "category": "待判断",
+      "capability_ids": [
+        "CAP-003",
+        "CAP-006"
+      ],
+      "evidence_status": "reported",
+      "evidence": [
+        {
+          "source": "product/API.md",
+          "locator": "\"订单笔数与退款说明\"节末段",
+          "note": "比较结果生成摘要与每位会员rationale，模型生成suggestion"
+        },
+        {
+          "source": "README.md",
+          "locator": "\"2.先试这四种分析任务\"第1条",
+          "note": "运行即可得到召回建议和依据"
+        }
+      ],
+      "next_step": "接入青禾数据后验证建议质量；建议的业务价值与下降原因仍需小林人工判断；访谈小林现有运营工具与用表流程，确认\"直接给\"的目标形态（产品当前仅本机单人Web页面，能否嵌入其流程未知）"
+    },
+    {
+      "id": "GAP-006",
+      "request": "验证\"会员老化\"这一归因判断（沈总单方判断）",
+      "category": "待判断",
+      "capability_ids": [],
+      "evidence_status": "reported",
+      "evidence": [
+        {
+          "source": "01_沈总立项邮件.md",
+          "locator": "正文第2段\"我的判断是会员老化比较明显\"",
+          "note": "归因是沈总单方判断，未经数据核实"
+        },
+        {
+          "source": "product/capabilities.json",
+          "locator": "CAP-003（member_history）、CAP-006（老会员定义）",
+          "note": "验证老化所需的工具与语义已有，待青禾数据接入后执行"
+        }
+      ],
+      "next_step": "这是沈总的判断，目前没有数据支持或否定。标准产品只比较两个时段的消费变化，不做原因归因。下一步问小林、陈姐在运营和门店侧观察到什么，再向老周确认能否取得入会时间、消费记录等获准样本；有数据后再判断用现有比较能力还是需要新的分析能力。不把会员老化写成已确认的原因。"
+    }
+  ]
+}

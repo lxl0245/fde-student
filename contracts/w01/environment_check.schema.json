@@ -1,0 +1,260 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "product_version",
+    "checked_at",
+    "implementation",
+    "runtime",
+    "model_mode",
+    "checks"
+  ],
+  "properties": {
+    "contract_version": {
+      "const": "w01-0.2.0"
+    },
+    "product_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "checked_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "implementation": {
+      "enum": [
+        "official",
+        "custom_language",
+        "self_built"
+      ]
+    },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "language",
+        "version"
+      ],
+      "properties": {
+        "language": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "model_mode": {
+      "const": "live"
+    },
+    "checks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime",
+        "database",
+        "tool_registry",
+        "product",
+        "model_api",
+        "checker",
+        "label_api",
+        "evaluation",
+        "trace"
+      ],
+      "properties": {
+        "runtime": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "code"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pass",
+                "fail",
+                "skipped"
+              ]
+            },
+            "code": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "database": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "code"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pass",
+                "fail",
+                "skipped"
+              ]
+            },
+            "code": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "tool_registry": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "code"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pass",
+                "fail",
+                "skipped"
+              ]
+            },
+            "code": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "product": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "code"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pass",
+                "fail",
+                "skipped"
+              ]
+            },
+            "code": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "model_api": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "code"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pass",
+                "fail",
+                "skipped"
+              ]
+            },
+            "code": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "checker": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "code"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pass",
+                "fail",
+                "skipped"
+              ]
+            },
+            "code": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "label_api": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "code"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pass",
+                "fail",
+                "skipped"
+              ]
+            },
+            "code": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "evaluation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "code"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pass",
+                "fail",
+                "skipped"
+              ]
+            },
+            "code": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "trace": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "code"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pass",
+                "fail",
+                "skipped"
+              ]
+            },
+            "code": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    }
+  }
+}

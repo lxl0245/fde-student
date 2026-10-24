@@ -1,0 +1,54 @@
+{
+  "version": "w1-capabilities-0.2.0",
+  "product_version": "0.2.0-w1",
+  "capabilities": [
+    {
+      "id": "CAP-001",
+      "name": "模型与执行内核",
+      "state": "implemented",
+      "scope": "LangGraph 组织模型和工具往返，最多 10 次模型调用，结构或证据错误最多修复 2 次；实际模型另行验证。"
+    },
+    {
+      "id": "CAP-002",
+      "name": "会话和确认状态",
+      "state": "implemented",
+      "scope": "SQLite checkpoint 持久化会话和中断；确认绑定草案与内容哈希，独立动作账本防重。"
+    },
+    {
+      "id": "CAP-003",
+      "name": "业务工具与参数校验",
+      "state": "implemented",
+      "scope": "describe_business、compare_spending、member_history 及受控标签工具；JSON Schema 与确定性许可共同生效。"
+    },
+    {
+      "id": "CAP-004",
+      "name": "SQLite 与样例数据",
+      "state": "implemented",
+      "scope": "独立虚构会员、订单、门店及覆盖范围，可重复导入；比较净消费，区分零与未知。"
+    },
+    {
+      "id": "CAP-005",
+      "name": "基础评估与 trace",
+      "state": "implemented",
+      "scope": "Promptfoo Python provider 和标准样例；OpenTelemetry 本地 span 导出，保存版本、结果、步数和调用成本用量。"
+    },
+    {
+      "id": "CAP-006",
+      "name": "标准语义与客户扩展",
+      "state": "implemented",
+      "scope": "有可执行标准净消费、老会员和下降定义；青禾语义与数据适配由后续开发，不自动支持任意指标。"
+    },
+    {
+      "id": "CAP-007",
+      "name": "样例外部标签动作",
+      "state": "implemented",
+      "scope": "独立有状态 HTTP API，草案/确认/执行/查询/幂等/规定撤销。青禾发券、标签连接器 W8 再开发。"
+    },
+    {
+      "id": "CAP-008",
+      "name": "生产运营",
+      "state": "extension_required",
+      "scope": "本地教学产品，无多用户隔离、生产认证、客户审计与灰度；W9 按客户要求扩展并验证。"
+    }
+  ]
+}

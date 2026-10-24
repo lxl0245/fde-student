@@ -1,0 +1,73 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "product_version",
+    "implementation",
+    "model_mode",
+    "cases",
+    "artifact_hashes",
+    "limits"
+  ],
+  "properties": {
+    "contract_version": {
+      "const": "w01-0.2.0"
+    },
+    "product_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "implementation": {
+      "enum": [
+        "official",
+        "custom_language",
+        "self_built"
+      ]
+    },
+    "model_mode": {
+      "const": "live"
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 7,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "case_id",
+          "passed",
+          "evidence"
+        ],
+        "properties": {
+          "case_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "passed": {
+            "type": "boolean"
+          },
+          "evidence": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "artifact_hashes": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      }
+    },
+    "limits": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}

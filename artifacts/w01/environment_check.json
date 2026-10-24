@@ -1,0 +1,49 @@
+{
+  "contract_version": "w01-0.2.0",
+  "product_version": "0.2.0-w1",
+  "checked_at": "2026-10-24T05:39:13.082097+00:00",
+  "implementation": "official",
+  "runtime": {
+    "language": "Python",
+    "version": "3.12.10"
+  },
+  "model_mode": "live",
+  "checks": {
+    "runtime": {
+      "status": "pass",
+      "code": "VERIFIED"
+    },
+    "database": {
+      "status": "pass",
+      "code": "VERIFIED"
+    },
+    "tool_registry": {
+      "status": "pass",
+      "code": "VERIFIED"
+    },
+    "checker": {
+      "status": "pass",
+      "code": "VERIFIED"
+    },
+    "trace": {
+      "status": "pass",
+      "code": "VERIFIED"
+    },
+    "product": {
+      "status": "pass",
+      "code": "LIVE_CASES"
+    },
+    "model_api": {
+      "status": "pass",
+      "code": "LIVE_MODEL"
+    },
+    "label_api": {
+      "status": "pass",
+      "code": "REAL_HTTP"
+    },
+    "evaluation": {
+      "status": "pass",
+      "code": "PROMPTFOO_REPORT_VERIFIED"
+    }
+  }
+}

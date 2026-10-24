@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:fde:w01:fit-gap:0.2.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "product_version",
+    "capability_matrix_version",
+    "items"
+  ],
+  "properties": {
+    "contract_version": {
+      "enum": [
+        "w01-0.2.0",
+        "w01-0.2.1"
+      ]
+    },
+    "product_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "capability_matrix_version": {
+      "const": "w1-capabilities-0.2.0"
+    },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "request",
+          "category",
+          "capability_ids",
+          "evidence_status",
+          "evidence",
+          "next_step"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^GAP-[0-9]{3}$"
+          },
+          "request": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "category": {
+            "enum": [
+              "产品已有",
+              "客户配置",
+              "系统适配",
+              "产品缺口",
+              "暂不承诺",
+              "待判断"
+            ]
+          },
+          "capability_ids": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^CAP-[0-9]{3}$"
+            }
+          },
+          "evidence_status": {
+            "enum": [
+              "verified",
+              "reported",
+              "unknown",
+              "conflicting"
+            ]
+          },
+          "evidence": {
+            "type": "array",
+            "maxItems": 20,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source",
+                "locator",
+                "note"
+              ],
+              "properties": {
+                "source": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 300
+                },
+                "locator": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 300
+                },
+                "note": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000
+                }
+              }
+            }
+          },
+          "next_step": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "contract_version": {
+            "const": "w01-0.2.0"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "items": {
+            "items": {
+              "properties": {
+                "category": {
+                  "not": {
+                    "const": "待判断"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

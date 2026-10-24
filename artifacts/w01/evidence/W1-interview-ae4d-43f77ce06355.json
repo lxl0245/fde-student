@@ -1,0 +1,59 @@
+{
+  "meeting_id": "7bfc55f6-196b-5f85-ae4d-43f77ce06355",
+  "role_id": "ROLE-SHEN",
+  "week": 1,
+  "state": "active",
+  "purpose": "了解预算金额、提升幅度、验收口径等",
+  "charged": true,
+  "mode": "live",
+  "scenario_version": "w01-scenario-0.3.2",
+  "project_decisions": [],
+  "summary_state": "requires_human_review",
+  "messages": [
+    {
+      "id": "MSG-01142",
+      "speaker": "assistant",
+      "content": "又见面了，这次你们想接着问什么？"
+    },
+    {
+      "id": "MSG-01143",
+      "speaker": "user",
+      "content": "沈总，您在邮件中说“要提升复购率”，这个期望提升的幅度是多少？"
+    },
+    {
+      "id": "MSG-01144",
+      "speaker": "assistant",
+      "content": "具体提升幅度和验收口径都还没确认，现在给不了你一个数字。我能明确的是，目标要让复购率止跌回升；复购率已经连续四个季度下滑，具体计算口径你们还得跟相关同事核实。"
+    },
+    {
+      "id": "MSG-01145",
+      "speaker": "user",
+      "content": "那我们对这个项目的预算大概是走哪种预算，预算金额大概是多少？"
+    },
+    {
+      "id": "MSG-01146",
+      "speaker": "assistant",
+      "content": "预算金额现在还没定，给不了你确定数字。预算和合同这块要王经理参与，具体走哪种预算、审批怎么走，得跟他一起对。"
+    },
+    {
+      "id": "MSG-01147",
+      "speaker": "user",
+      "content": "了解，那验收口径这块，我们有明确吗？"
+    },
+    {
+      "id": "MSG-01148",
+      "speaker": "assistant",
+      "content": "验收口径现在没有明确，具体提升幅度、计算口径和交付范围都还没定。我能明确的是目标要让复购率止跌回升，复购率已经连续四个季度下滑，具体口径你们还得跟相关同事核实。"
+    },
+    {
+      "id": "MSG-01149",
+      "speaker": "user",
+      "content": "好的"
+    },
+    {
+      "id": "MSG-01150",
+      "speaker": "assistant",
+      "content": "好，今天先聊到这里。"
+    }
+  ]
+}
