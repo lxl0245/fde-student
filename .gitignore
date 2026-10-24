@@ -26,5 +26,9 @@ venv/
 .DS_Store
 Thumbs.db
 
+# Weekly workflow / transient run locks (must stay out of the submission zip too)
+.workflow.lock
+artifacts/**/*.tmp
+
 # WorkBuddy workspace data
 .workbuddy/

@@ -84,3 +84,62 @@ LangGraph 图、工具分发与输出处理在 `agent.py`；样例数据和可�
 
 要回到全新演示状态，请使用新的 `--home` 目录，避免删除旧证据。`init` 会在指定样例库中重新导入样例，不对客户库使用。当前撤销只支持标签 Mock 契约，结果未知先查询，不承诺任意业务动作可以回滚。
 
+## 6. 每周版本与快照策略
+
+本课程要求所有周次在同一个仓库中完成，并保留每一周的提交快照。因此本仓库采用「**单一 `main` 线性演进 + 每周一个 annotated tag**」的版本策略，不建立按周的常驻分支。
+
+### 6.1 三条硬约定
+
+1. **同一个仓库目录，永远不重建。** 每周新材料包解压后覆盖到**同一个**工程目录并提交。在新解压目录里重新执行 `git init` 会产生互不相干的历史，推同一个远端要么被拒、要么强推丢掉前面几周。
+2. **提交用的 zip 不进仓库。** 每周发送给课程的 zip 只含 `docs/wNN/`、`customer/wNN/`、`artifacts/wNN/` 等既定路径，`.gitignore` 已忽略 `*.zip`，请保持。`.workflow.lock`、`.runtime/`、`.venv/`、密钥同样不得提交。
+3. **tag 不会随普通 `git push` 上传。** 推送必须带 `--follow-tags`，否则本地有 tag、GitHub 上没有。
+
+### 6.2 tag 命名
+
+格式 `wNN-<产品版本>`，直接由 `MANIFEST.json` 的 `product_version` 推导：
+
+| `product_version` | tag | 说明 |
+| --- | --- | --- |
+| `0.2.0-w1` | `w01-0.2.0` | W01 提交快照 |
+| `0.5.4-w2` | `w02-0.5.4` | 后续各周同此规则（具体值以当周 `MANIFEST.json` 为准） |
+
+同一周按反馈修订后，**不复用版本号**，而是在后面追加 `-r1`、`-r2`。原始提交的 tag 保持不变，作为当时的交付证据。
+
+### 6.3 每周流程
+
+作业回填完成、自检通过后执行：
+
+```powershell
+# 推荐：自动推导版本号并打 annotated tag（-WhatIf 可先看结果）
+.\tools\tag_week.ps1 -Push
+
+# 等价的手写命令
+git tag -a w02-0.5.4 -m "W02 submit snapshot 2026-10-31; product 0.5.4-w2"
+git push --atomic origin main --follow-tags
+git ls-remote --tags origin
+```
+
+脚本会检查工作区是否干净、tag 是否重复，并打印下一步命令。建议每次打完 tag 后在 GitHub 上为该 tag 创建 Release，把本周「证据清单 + 自检输出摘要」写入 Release 说明。
+
+### 6.4 后续几周常见的两种操作
+
+**修订已提交的周次**（老师反馈后沿用编号更新证据）：从当时的 tag 派生临时分支，改完合并回 `main`，再打修订 tag。
+
+```powershell
+git switch -c week-02-fix w02-0.5.4
+# ... 修订 ...
+git switch main
+git merge --no-ff week-02-fix
+.\tools\tag_week.ps1 -Revision 1 -Push        # w02-0.5.4-r1
+```
+
+**同时对照两周代码**（W5/W7/W9 调优要与 W1 基线比较）：不要来回 checkout，用 worktree 把旧 tag 挂到独立目录。
+
+```powershell
+git worktree add ..\fde-student-w01-snapshot w01-0.2.0
+```
+
+### 6.5 历史快照一览
+
+完整表格与每周交付物路径见 [RELEASE.md](RELEASE.md) 的「版本历史」一节。
+
